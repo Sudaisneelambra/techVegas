@@ -1,5 +1,22 @@
-
-<h1 class="cont pl-9 pt-3 text-[30px] text-[#2f3888] font-serif font-bold">{{categoryname | capitalize}}</h1>
-<div class="main w-full h-auto p-8 ">
-    <app-product *ngFor="let dt of productList" [data]=dt class=" flex justify-center"></app-product>
+<h1 class="cont pl-9 text-[30px] text-[#2f3888] font-serif font-bold pt-24">
+  {{ categoryname | capitalize }}
+</h1>
+<div class="flex items-center bg-[white]  justify-center pb-4">
+  <div class="input-div w-[500px]  bg-[#96939398] flex  px-3 rounded-md items-center justify-between">
+    <input
+    type="text"
+    name=""
+    id=""
+    placeholder="search"
+    class=" py-2 pl-2 border-0 outline-none w-[300px] shadow-xl bg-transparent text-[black]"
+  />
+  <i class="fa-solid fa-magnifying-glass text-[22px]"></i>
+  </div>
+</div>
+<div class="main w-full h-auto p-8">
+  <app-product
+    *ngFor="let dt of productList"
+    [data]="dt"
+    class="flex justify-center"
+  ></app-product>
 </div>

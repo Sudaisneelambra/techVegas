@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/item.reducer';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SingleProductComponent } from './pages/single-product/single-product.component';
+import { SingleitemComponent } from './components/singleitem/singleitem.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { SingleProductComponent } from './pages/single-product/single-product.co
     ProductComponent,
     ButtonComponent,
     LoadingComponent,
+    SingleitemComponent,
     StoreModule.forRoot({cartt:cartReducer})
 
   ],

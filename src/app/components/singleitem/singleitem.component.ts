@@ -1,22 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { Store, select } from '@ngrx/store';
 import { addToCart, removeFormCart } from 'src/app/store/item.action';
-import { Router } from '@angular/router';
+import { CartItem } from 'src/app/interfaces/cart.interface';
 import { selectCartItems } from 'src/app/store/item.selector';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-singleitem',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  imports: [CommonModule,ButtonComponent],
+  templateUrl: './singleitem.component.html',
+  styleUrls: ['./singleitem.component.css']
 })
-export class ProductComponent implements OnInit{
-  @Input() data: any;
-  constructor(private store: Store, private router: Router) {}
+export class SingleitemComponent {
 
+  cart:CartItem[]=[]
+  count :any
+
+  @Input() product:any
   className = {
     'padding-left': '28px',
     'background-color': '#152D35',
@@ -28,28 +30,15 @@ export class ProductComponent implements OnInit{
     'border-radius': '3px',
   };
 
-  cart:any
-  count =0 
+  constructor (private store:Store) {}
 
-  ngOnInit(): void {
+  ngOnChanges(){
+
     this.store.pipe(select(selectCartItems)).subscribe((cartItems) => {
       this.cart = cartItems; 
-      const item = cartItems.find((e: any) => e.id === this.data.id);
+      const item = cartItems.find((e: any) => e.id === this.product.id);
       this.count = item ? item.count : 0;
     });
-  }
-
-  addToCart(id: number, category: string) {
-    this.store.dispatch(addToCart({ id, category }));
-    const item = this.cart.find((e: any) => e.id === id);
-    
-        if(item){
-          this.count = item.count
-        }
-  }
-
-  gotToSingleDetails(id: number) {
-    this.router.navigate(['singleProduct', id]);
   }
 
   checkCart(data:any){
@@ -60,8 +49,6 @@ export class ProductComponent implements OnInit{
     } else {
       return true
     }
-
-    return 
   }
 
   increase(id:any,category:any){
@@ -72,5 +59,13 @@ export class ProductComponent implements OnInit{
     this.store.dispatch(removeFormCart({id,category}))
   }
 
+  addToCart(id: number, category: string) {
+    this.store.dispatch(addToCart({ id, category }));
+    const item = this.cart.find((e: any) => e.id === id);
+    
+        if(item){
+          this.count = item.count
+        }
+  }
 
 }

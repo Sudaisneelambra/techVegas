@@ -1,15 +1,6 @@
-<div class="cont w-full h-screen pt-20 flex justify-center items-center">
-   <div class="main w-[80%] h-[600px] shadow-xl rounded-md overflow-hidden  flex">
-        <div class="one w-[50%] h-full  flex justify-center items-center">
-            <img [src]="productDetails?.image" alt="" class="w-[90%] h-[80%]">
-        </div>
-        <div class="two w-[50%] h-full  flex flex-col justify-center items-start p-5 bg-[#10222a] gap-4">
-            <h1 class="font-bold text-[white]">{{productDetails?.title}}</h1>
-            <h1 class="font-[400] text-[red]">Category : {{productDetails?.category}}</h1>
-            <p class="text-[13px] text-[#cfcbcb]">{{productDetails?.description}}</p>
-            <h1 class="text-[18px] font-bold text-white">$ {{productDetails?.price}}</h1>
-            <p class="text-[#0aff0a]">Rating: {{ productDetails?.rating?.rate }} <span class="">({{ productDetails?.rating?.count }} reviews)</span></p>
-            <app-button [className]="className">Add To Cart <i class="fa-solid fa-plus pl-2" ></i></app-button>
-        </div>
-   </div>
+<div class="cont w-full h-screen  flex items-center justify-center  pt-10 mb-9">
+    <app-singleitem  [product]="productDetails" class="pb-6 pt-16 flex justify-center "></app-singleitem>
 </div>
+
+
+

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { CommonService } from 'src/app/services/common.service';
+import { selectCartItems } from 'src/app/store/item.selector';
+import { CartItem } from 'src/app/interfaces/cart.interface';
+import { addToCart, removeFormCart } from 'src/app/store/item.action';
 
 @Component({
   selector: 'app-single-product',
@@ -11,18 +15,12 @@ export class SingleProductComponent implements OnInit{
 
   productDetails:any
 
-  className = {
-    'padding-left': '28px',
-    'background-color': '#152D35',
-    'padding-right': '28px',
-    'padding-top': '8px',
-    'padding-bottom': ' 8px',
-    'font-weight': '500',
-    'color': 'white',
-    'border-radius': '3px',
-  };
+ 
 
-  constructor(private route:ActivatedRoute, private commonService:CommonService) {}
+  cart :CartItem[]=[]
+  count :any
+
+  constructor(private route:ActivatedRoute, private commonService:CommonService, private store:Store) {}
 
   ngOnInit(): void {
       this.route.params.subscribe((val)=>{
@@ -41,8 +39,7 @@ export class SingleProductComponent implements OnInit{
     this.commonService.getSingleProduct(id).subscribe({
       next:(res)=>{
         this.commonService.loadingboolean.next(false)
-        this.productDetails = res
-        console.log(this.productDetails);
+        this.productDetails = res        
         
       },
       error:(err)=>{
@@ -52,5 +49,7 @@ export class SingleProductComponent implements OnInit{
     })
       
   }
+
+ 
 
 }

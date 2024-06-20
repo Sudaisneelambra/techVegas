@@ -13,10 +13,9 @@
     .main{
         grid-template-columns: 1fr;
     }
+    .input-div{
+        width: 280px;
+    }
 }
 
-@media(max-width:450px){
-   .cont{
-    padding: 20px;
-   }
-}
+

@@ -1,6 +1,7 @@
 .main{
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    /* grid-template-columns: jus; */
+    justify-content: space-between;
 }
 
 @media(max-width:930px){

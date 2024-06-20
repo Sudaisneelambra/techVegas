@@ -26,7 +26,7 @@ export class NavBarComponent implements OnInit{
   ngOnInit(): void {
     this.cartItem.subscribe((val:any)=>{
       
-      if(val && val.length>0){
+      if(val){
         const ct = val.reduce((acc:any,curr:CartItem)=>{
             return acc +=curr.count
         },0)
