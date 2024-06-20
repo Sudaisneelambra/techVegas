@@ -1,0 +1,19 @@
+@media(max-width:930px){
+    .main{
+        height: 300px;
+    }
+}
+
+@media(max-width:720px){
+    .main{
+        height: 250px;
+    }
+    h1{
+        font-size: 17px;
+    }
+}
+
+.main:hover{
+    scale: 1.03;
+    transition: .2s ease-in;
+}

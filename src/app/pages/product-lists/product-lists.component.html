@@ -1,0 +1,5 @@
+
+<h1 class="cont pl-9 pt-3 text-[30px] text-[#2f3888] font-serif font-bold">{{categoryname | capitalize}}</h1>
+<div class="main w-full h-auto p-8 ">
+    <app-product *ngFor="let dt of productList" [data]=dt class=" flex justify-center"></app-product>
+</div>

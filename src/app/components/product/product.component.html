@@ -1,0 +1,9 @@
+<div class="main min-w-[350px] max-w-[350px]  flex justify-center items-center shadow-lg rounded-md flex-col gap-5 py-6 px-2" (click)="gotToSingleDetails(data?.id)">
+    <img [src]="data?.image" alt="img" class="w-[80%]  h-[300px] ">
+    <h1 class="font-bold text-[#b34545] text-[14px] font-serif text-center px-2">{{data?.title }}</h1>
+    <h1 class="flex w-full justify-between px-5 "><p class="font-bold">${{data?.price}}</p> <p class=" text-[14px] text-[#49b849]">Rating: {{ data?.rating.rate }} <span class="text-[green]">({{ data.rating.count }} reviews)</span></p></h1>
+    <div class="w-[95%] flex justify-center" *ngIf="checkCart(data); else noCart"><app-button [className]="className" (click)="addToCart(data?.id,data?.category)">Add To Cart <i class="fa-solid fa-plus pl-2" ></i></app-button></div>
+    <ng-template #noCart>
+        <div class="border-2 w-[40%] h-[40px]"><i class="fa-solid fa-minus"></i><app-button></app-button><i class="fa-solid fa-plus"></i></div>
+    </ng-template>
+</div>

@@ -1,0 +1,21 @@
+@media(max-width:380px){
+    img{
+        height: 200px !important;
+    }
+}
+
+@media(max-width:740px){
+    img{
+        height: 250px;
+    }
+   
+}
+@media(max-width:400px){
+    .main{
+     min-width: 280px;
+    }
+ }
+.main:hover{
+    scale: 1.03;
+    transition: .2s ease-in;
+}

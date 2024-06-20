@@ -1,0 +1,40 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+@media(max-width:930px){
+    input{
+        width: 200px;
+    }
+    .logos{
+        gap: 20px;
+    }
+}
+@media(max-width:650px){
+    .head{
+        font-size: 17px;
+    }
+     .profile, .like, .home{
+        display: none ;
+    }
+}
+
+@media(max-width:460px){
+    .logos{
+        gap: 10px;
+        padding-left: 2px;
+    }
+    input{
+        width: 100px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    .head{
+        font-size: 15px;
+    }
+    .main{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
