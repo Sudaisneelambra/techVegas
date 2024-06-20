@@ -17,6 +17,7 @@ import { cartReducer } from './store/item.reducer';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SingleProductComponent } from './pages/single-product/single-product.component';
 import { SingleitemComponent } from './components/singleitem/singleitem.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SingleitemComponent } from './components/singleitem/singleitem.componen
     HomePageComponent,
     ProductListsComponent,
     SingleProductComponent,
+    ProfileComponent,
     
   ],
   imports: [

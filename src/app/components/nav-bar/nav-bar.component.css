@@ -15,14 +15,14 @@
     .head{
         font-size: 17px;
     }
-     .profile, .like, .home{
+      .like, .home{
         display: none ;
     }
 }
 
 @media(max-width:460px){
     .logos{
-        gap: 10px;
+        gap: 15px;
         padding-left: 2px;
     }
     input{

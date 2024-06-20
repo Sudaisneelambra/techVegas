@@ -5,6 +5,7 @@ import {MatBadgeModule } from '@angular/material/badge'
 import { Store } from '@ngrx/store';
 import { selectCartItems } from 'src/app/store/item.selector';
 import { CartItem } from 'src/app/interfaces/cart.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,7 +20,7 @@ export class NavBarComponent implements OnInit{
   cartItem:any
   likeBoolean:boolean= false
 
-  constructor(private store:Store){
+  constructor(private store:Store, private router:Router){
     this.cartItem= store.select(selectCartItems)
   }
 
@@ -39,6 +40,10 @@ export class NavBarComponent implements OnInit{
   // like button
   like(){
     this.likeBoolean = !this.likeBoolean
+  }
+
+  goToProfile(){
+    this.router.navigate(['Profile'])
   }
 
   

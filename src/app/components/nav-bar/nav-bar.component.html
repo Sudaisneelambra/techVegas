@@ -7,7 +7,7 @@
         <h1 class="home">Home</h1>
         <h1><i class="text-[20px] like"  [ngClass]=" likeBoolean ? 'fa-solid fa-heart text-[red] ': 'fa-regular fa-heart'" (click)="like()"></i></h1>
         <h1 class="relative"><mat-icon class="custom-icon">shopping_cart</mat-icon> <div class="absolute w-5 h-5 rounded-full bg-red-600 -top-3 -right-3 flex justify-center items-center text-[12px]">{{count}}</div></h1>
-        <h1><i class="fa-solid fa-user text-[20px] profile"></i></h1>
+        <h1><i class="fa-solid fa-user text-[20px] profile" (click)="goToProfile()"></i></h1>
         <h1><i class="fa-solid fa-right-from-bracket text-[20px] logout"></i></h1>
     </div>
 </nav>
