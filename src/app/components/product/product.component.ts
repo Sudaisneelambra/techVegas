@@ -5,6 +5,8 @@ import { Store, select } from '@ngrx/store';
 import { addToCart, removeFormCart } from 'src/app/store/item.action';
 import { Router } from '@angular/router';
 import { selectCartItems } from 'src/app/store/item.selector';
+import { Product } from 'src/app/interfaces/product.interface';
+import { CartItem } from 'src/app/interfaces/cart.interface';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +16,9 @@ import { selectCartItems } from 'src/app/store/item.selector';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
-  @Input() data: any;
+
+
+  @Input() data!: Product | undefined;
   constructor(private store: Store, private router: Router) {}
 
   className = {
@@ -28,49 +32,66 @@ export class ProductComponent implements OnInit{
     'border-radius': '3px',
   };
 
-  cart:any
-  count =0 
+  cart:CartItem[]=[]
+  count:number =0 
 
   ngOnInit(): void {
     this.store.pipe(select(selectCartItems)).subscribe((cartItems) => {
       this.cart = cartItems; 
-      const item = cartItems.find((e: any) => e.id === this.data.id);
+      const item = cartItems.find((e: CartItem) => e.id === this.data?.id);
       this.count = item ? item.count : 0;
     });
   }
 
-  addToCart(id: number, category: string) {
-    this.store.dispatch(addToCart({ id, category }));
-    const item = this.cart.find((e: any) => e.id === id);
-    
-        if(item){
-          this.count = item.count
-        }
-  }
+  // add to cart
+  addToCart(id: number | undefined, category: string |undefined) {
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(addToCart({ id, category }));
+      const item = this.cart.find((e: any) => e.id === id);
+      
+          if(item){
+            this.count = item.count
+          }
 
-  gotToSingleDetails(id: number) {
-    this.router.navigate(['singleProduct', id]);
-  }
-
-  checkCart(data:any){
-    if(this.cart && this.cart.length>0){
-      const index = this.cart.findIndex((e: any) => e.id === data.id);
-      return index === -1;
-
-    } else {
-      return true
     }
+  }
 
+
+  // check cart is empty of not
+  checkCart(data:Product | undefined){
+   if(data !== undefined){
+      if(this.cart && this.cart.length>0){
+        const index = this.cart.findIndex((e: any) => e.id === data.id);
+        return index === -1;
+
+      } else {
+        return true
+      }
+
+    }
     return 
   }
 
-  increase(id:any,category:any){
-    this.store.dispatch(addToCart({id,category}))
+
+  // increase cart quantity
+  increase(id:number |undefined,category:string |undefined){
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(addToCart({id,category}))
+    }
   }
 
-  decrease(id:any,category:any){
-    this.store.dispatch(removeFormCart({id,category}))
+
+  // decrease from cart
+  decrease(id:number |undefined,category:string |undefined){
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(removeFormCart({id,category}))
+    }
   }
 
+
+  // go to single product page
+  gotToSingleDetails(id: number | undefined) {
+    this.router.navigate(['singleProduct', id]);
+  }
 
 }

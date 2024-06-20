@@ -10,6 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ButtonComponent {
 
-  @Input() className:any
+  @Input() className:{[key:string]:string}={}
 
 }

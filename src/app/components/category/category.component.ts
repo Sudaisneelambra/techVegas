@@ -22,9 +22,11 @@ export class CategoryComponent {
     womenclothing: '/assets/women.jpg'
   };
 
-  @Input() items:any
+  @Input() items!:string
 
 
+
+  // categorise image from out computer
   getCategoryImage(category: string): string {
     
     switch(category.replace(/\s+/g, '').replace(/'/g, '')) {
@@ -42,7 +44,7 @@ export class CategoryComponent {
   }
 
 
-  gotoProductfullList(item:any){
-    this.router.navigate(['/category',this.items])  
+  gotoProductfullList(item:string){
+    this.router.navigate(['/category',item])  
   }
 }

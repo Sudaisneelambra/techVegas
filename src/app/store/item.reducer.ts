@@ -35,7 +35,6 @@ export const cartReducer = createReducer(
         );
       } else {
         const one = state.filter((item) => item.id !== id )
-        console.log(one);
         return state.filter((item) => item.id !== id );
       }
     } else {

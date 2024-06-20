@@ -35,6 +35,8 @@ export class NavBarComponent implements OnInit{
     })
   }
 
+
+  // like button
   like(){
     this.likeBoolean = !this.likeBoolean
   }

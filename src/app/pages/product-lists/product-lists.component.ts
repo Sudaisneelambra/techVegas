@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/interfaces/product.interface';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class ProductListsComponent implements OnInit{
   
   categoryname:any
   productList:any
+  temp:any
 
   ngOnInit(): void {
 
@@ -24,7 +26,7 @@ export class ProductListsComponent implements OnInit{
     })
   }
 
-  getAllProducts(name:any){
+  getAllProducts(name:string){
     setTimeout(() => {
       this.commonService.loadingboolean.next(true)
     },);
@@ -32,7 +34,8 @@ export class ProductListsComponent implements OnInit{
       next:(res)=>{
         this.commonService.loadingboolean.next(false)
         this.productList=res
-        console.log(res);
+        this.temp = this.productList
+        
         
       },
       error:(err)=>{
@@ -41,6 +44,17 @@ export class ProductListsComponent implements OnInit{
         
       }
     })
+  }
+
+  search(val:string){
+    if(val.trim() !== ''){
+        this.productList= this.temp.filter((e:Product)=>{
+          return e.title.toLowerCase().includes(val.toLowerCase())
+        })
+    }else{
+      this.productList = this.temp
+    }
+    
   }
 
 }

@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { addToCart, removeFormCart } from 'src/app/store/item.action';
 import { CartItem } from 'src/app/interfaces/cart.interface';
 import { selectCartItems } from 'src/app/store/item.selector';
+import { Product } from 'src/app/interfaces/product.interface';
 
 @Component({
   selector: 'app-singleitem',
@@ -16,9 +17,10 @@ import { selectCartItems } from 'src/app/store/item.selector';
 export class SingleitemComponent {
 
   cart:CartItem[]=[]
-  count :any
+  count !:number
 
-  @Input() product:any
+  @Input() product!:Product | undefined
+
   className = {
     'padding-left': '28px',
     'background-color': '#152D35',
@@ -36,36 +38,45 @@ export class SingleitemComponent {
 
     this.store.pipe(select(selectCartItems)).subscribe((cartItems) => {
       this.cart = cartItems; 
-      const item = cartItems.find((e: any) => e.id === this.product.id);
+      const item = cartItems.find((e: any) => e?.id === this.product?.id);
       this.count = item ? item.count : 0;
     });
   }
 
-  checkCart(data:any){
-    if(this.cart && this.cart.length>0){
-      const index = this.cart.findIndex((e: any) => e.id === data.id);
-      return index === -1;
+  checkCart(data:Product |undefined){
+    if(data !== undefined){
+      if(this.cart && this.cart.length>0){
+        const index = this.cart.findIndex((e: CartItem) => e?.id === data?.id);
+        return index === -1;
+  
+      } else {
+        return true
+      }
+    }
+    return
+  }
 
-    } else {
-      return true
+  increase(id:number | undefined,category:string | undefined){
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(addToCart({id,category}))
     }
   }
 
-  increase(id:any,category:any){
-    this.store.dispatch(addToCart({id,category}))
+  decrease(id:number | undefined,category:string | undefined){
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(removeFormCart({id,category}))
+    }
   }
 
-  decrease(id:any,category:any){
-    this.store.dispatch(removeFormCart({id,category}))
-  }
-
-  addToCart(id: number, category: string) {
-    this.store.dispatch(addToCart({ id, category }));
-    const item = this.cart.find((e: any) => e.id === id);
-    
-        if(item){
-          this.count = item.count
-        }
+  addToCart(id: number | undefined, category: string |undefined) {
+    if(id !== undefined && category !== undefined){
+      this.store.dispatch(addToCart({ id, category }));
+      const item = this.cart.find((e: CartItem) => e.id === id);
+      
+          if(item){
+            this.count = item.count
+          }
+    }
   }
 
 }

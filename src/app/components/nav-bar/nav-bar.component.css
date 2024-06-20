@@ -1,6 +1,5 @@
 .main{
     display: flex;
-    /* grid-template-columns: jus; */
     justify-content: space-between;
 }
 

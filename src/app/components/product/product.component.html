@@ -1,7 +1,7 @@
 <div class="main min-w-[350px] max-w-[350px]  flex justify-center items-center shadow-lg rounded-md flex-col gap-5 py-6 px-2" >
     <img [src]="data?.image" alt="img" class="w-[80%]  h-[300px] " (click)="gotToSingleDetails(data?.id)">
     <h1 class="font-bold text-[#b34545] text-[14px] font-serif text-center px-2" (click)="gotToSingleDetails(data?.id)">{{data?.title }}</h1>
-    <h1 class="flex w-full justify-between px-5 " (click)="gotToSingleDetails(data?.id)"><p class="font-bold" >${{data?.price}}</p> <p class=" text-[14px] text-[#49b849]">Rating: {{ data?.rating.rate }} <span class="text-[green]">({{ data.rating.count }} reviews)</span></p></h1>
+    <h1 class="flex w-full justify-between px-5 " (click)="gotToSingleDetails(data?.id)"><p class="font-bold" >${{data?.price}}</p> <p class=" text-[14px] text-[#49b849]">Rating: {{ data?.rating?.rate }} <span class="text-[green]">({{ data?.rating?.count }} reviews)</span></p></h1>
     <div class="w-[95%] flex justify-center" *ngIf="checkCart(data); else noCart"><app-button [className]="className" (click)="addToCart(data?.id,data?.category)">Add To Cart <i class="fa-solid fa-plus pl-2" ></i></app-button></div>
     <ng-template #noCart>
         <div class=" w-[150px] h-[40px] flex justify-between px-5 items-center bg-[#152D35] text-[white]  py-1"><i class="fa-solid fa-minus" (click)="decrease(data?.id, data?.category)"></i><h1 class="bg-[gray] px-3 h-full flex items-center font-bold">{{count}}</h1><i class="fa-solid fa-plus" (click)="increase(data?.id, data?.category)"></i></div>

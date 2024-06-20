@@ -7,16 +7,23 @@
     type="text"
     name=""
     id=""
+    #val
     placeholder="search"
     class=" py-2 pl-2 border-0 outline-none w-[300px] shadow-xl bg-transparent text-[black]"
+    (keyup)="search(val.value)"
   />
   <i class="fa-solid fa-magnifying-glass text-[22px]"></i>
   </div>
 </div>
 <div class="main w-full h-auto p-8">
-  <app-product
+<ng-container *ngIf="productList && productList?.length>0 ; else nodata"> 
+    <app-product
     *ngFor="let dt of productList"
     [data]="dt"
     class="flex justify-center"
   ></app-product>
+</ng-container>
+<ng-template #nodata>
+        <h1 class="font-bold text-[30px]">No Data Fount</h1>
+</ng-template>
 </div>

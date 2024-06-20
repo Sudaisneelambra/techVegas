@@ -5,6 +5,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { selectCartItems } from 'src/app/store/item.selector';
 import { CartItem } from 'src/app/interfaces/cart.interface';
 import { addToCart, removeFormCart } from 'src/app/store/item.action';
+import { Product } from 'src/app/interfaces/product.interface';
 
 @Component({
   selector: 'app-single-product',
@@ -13,12 +14,10 @@ import { addToCart, removeFormCart } from 'src/app/store/item.action';
 })
 export class SingleProductComponent implements OnInit{
 
-  productDetails:any
-
- 
+  productDetails!:Product
 
   cart :CartItem[]=[]
-  count :any
+  count !:number
 
   constructor(private route:ActivatedRoute, private commonService:CommonService, private store:Store) {}
 
@@ -32,7 +31,7 @@ export class SingleProductComponent implements OnInit{
   }
 
 
-  getSingleDetailes(id:any){
+  getSingleDetailes(id:number){
     setTimeout(() => {
       this.commonService.loadingboolean.next(true)
     },);
